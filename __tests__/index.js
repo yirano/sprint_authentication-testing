@@ -1,6 +1,8 @@
 const supertest = require('supertest')
 const server = require('../index')
 const db = require('../database/dbConfig')
+const auth = require('../auth/authenticate-middleware')
+// const jest = require('jest')
 
 let token
 
@@ -48,15 +50,30 @@ describe('Test Endpoints (Authorized)', () => {
 		token = res.body.token
 		expect(res.statusCode).toBe(200)
 	})
+
+	// it('GET THROUGH THE SESSION RESTRICTION', async () => {
+	// 	const res = await supertest(server).post('/api/auth/login').send({
+	// 		username: 'newdean',
+	// 		password: 'password'
+	// 	})
+	// 	expect(res.statusCode).toBe(200)
+	// })
+
 	it("GET '/' (Properly Authenticated)", async () => {
 		const res = await supertest(server).get('/api/jokes').set('Cookie', `token=${token}`)
 		expect(res.body.length).toBe(20)
 		expect(res.statusCode).toBe(200)
 	})
+
 	it("GET '/logout', Logs out", async () => {
 		const res = await supertest(server).get('/api/auth/logout')
 		expect(res.statusCode).toBe(200)
 		expect(res.request.header['Cookie']).toBeUndefined()
 		expect(res.header['set-cookie'][0]).toBe('token=; Path=/')
+	})
+
+	it("GET '/logout' Sends user message", async () => {
+		const res = await supertest(server).get('/api/auth/logout')
+		expect(res.body.message).toEqual('See you next time!')
 	})
 })

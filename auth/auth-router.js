@@ -48,6 +48,8 @@ router.post('/login', async (req, res, next) => {
 		const token = jwt.sign(payload, process.env.SECRET)
 		res.cookie('token', token)
 		process.env.TOKEN = token
+		req.session.user = payload
+		// console.log(req.session.user)
 		res.json({
 			...payload,
 			token
@@ -61,7 +63,7 @@ router.get('/logout', async (req, res, next) => {
 	try {
 		process.env.TOKEN = ''
 		res.cookie('token', '')
-		res.status(200).end()
+		res.status(200).json({ message: 'See you next time!' })
 	} catch (error) {
 		next(error)
 	}

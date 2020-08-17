@@ -14,6 +14,12 @@ function authenticate() {
 			if (!token) {
 				return res.status(401).json(authError)
 			}
+			// console.log('MIDDLWARE ', req.session)
+			if (process.env.NODE_ENV === 'development') {
+				if (!req.session || !req.session.user) {
+					return res.status(418).json({ message: 'What you meeeeean?' })
+				}
+			}
 			jwt.verify(token, process.env.SECRET, (err) => {
 				if (err) {
 					return res.status(401).json(authError)

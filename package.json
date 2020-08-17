@@ -3,11 +3,11 @@
 	"version": "1.0.0",
 	"description": "Authentication Sprint Challenge",
 	"main": "index.js",
-  "scripts": {
-    "server": "cross-env NODE_ENV=development nodemon -r dotenv/config index.js",
-    "test": "cross-env NODE_ENV=testing jest --setupFiles dotenv/config",
-    "test:watch": "cross-env NODE_ENV=testing jest --watch --setupFiles dotenv/config"
-  },
+	"scripts": {
+		"server": "cross-env NODE_ENV=development nodemon -r dotenv/config index.js",
+		"test": "cross-env NODE_ENV=testing jest --setupFiles dotenv/config",
+		"test:watch": "cross-env NODE_ENV=testing jest --watch --setupFiles dotenv/config"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/LambdaSchool/Sprint-Challenge-Authentication.git"
@@ -25,6 +25,7 @@
 		"cookie-parser": "^1.4.5",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
+		"express-session": "^1.17.1",
 		"helmet": "^3.22.0",
 		"jsonwebtoken": "^8.5.1",
 		"knex": "^0.21.4",
