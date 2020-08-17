@@ -57,4 +57,14 @@ router.post('/login', async (req, res, next) => {
 	}
 })
 
+router.get('/logout', async (req, res, next) => {
+	try {
+		process.env.TOKEN = ''
+		res.cookie('token', '')
+		res.status(200).end()
+	} catch (error) {
+		next(error)
+	}
+})
+
 module.exports = router

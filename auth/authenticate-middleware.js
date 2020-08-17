@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 function authenticate() {
 	return async (req, res, next) => {
 		try {
-			const authError = { message: 'Invalid Creds' }
+			const authError = { message: "You're not authorized" }
 			const token = req.cookies.token
 			if (!token) {
 				return res.status(401).json(authError)
