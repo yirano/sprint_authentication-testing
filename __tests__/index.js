@@ -13,4 +13,9 @@ describe('Test Endpoints (Unauthorized)', () => {
 		const res = await supertest(server).get('/api/jokes/')
 		expect(res.statusCode).toBe(401)
 	})
+
+	it("POST '/login' (Invalid Credentials)", async () => {
+		const res = await supertest(server).post('/api/auth/login').send({ username: 'Hello', password: 'Goodbye' })
+		expect(res.statusCode).toBe(401)
+	})
 })
