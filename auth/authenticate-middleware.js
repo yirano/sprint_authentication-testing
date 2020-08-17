@@ -11,11 +11,11 @@ function authenticate() {
 			const authError = { message: 'Invalid Creds' }
 			const token = req.cookies.token
 			if (!token) {
-				res.status(401).json(authError)
+				return res.status(401).json(authError)
 			}
 			jwt.verify(token, process.env.SECRET, (err) => {
 				if (err) {
-					res.status(401).json(authError)
+					return res.status(401).json(authError)
 				}
 
 				next()
