@@ -62,6 +62,7 @@ router.post('/login', async (req, res, next) => {
 router.get('/logout', async (req, res, next) => {
 	try {
 		process.env.TOKEN = ''
+		req.session.destroy()
 		res.cookie('token', '')
 		res.status(200).json({ message: 'See you next time!' })
 	} catch (error) {
