@@ -17,6 +17,11 @@ server.use('/api/auth', authRouter)
 // server.use('/api/jokes', authenticate, jokesRouter)
 server.use('/api/jokes', jokesRouter)
 
+server.use((err, req, res, next) => {
+	console.dir(err)
+	res.status(500).json({ errorMessage: 'Something went wrong' })
+})
+
 if (!module.parent) {
 	server.listen(PORT, () => {
 		console.log(`\n=== Server listening on port ${PORT} ===\n`)
