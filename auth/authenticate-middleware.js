@@ -10,6 +10,7 @@ function authenticate() {
 		try {
 			const authError = { message: "You're not authorized" }
 			const token = process.env.TOKEN || req.cookies.token
+			// console.log(req.cookies.token)
 			if (!token) {
 				return res.status(401).json(authError)
 			}

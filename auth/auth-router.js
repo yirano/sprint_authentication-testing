@@ -8,7 +8,7 @@ router.post('/register', async (req, res, next) => {
 	try {
 		const { username, password } = req.body
 		const user = await Users.findUser(username).first()
-		console.log(user)
+		// console.log(user)
 		if (user) {
 			return res.status(409).json({ message: 'Username already exists' })
 		}
