@@ -9,7 +9,7 @@ function authenticate() {
 	return async (req, res, next) => {
 		try {
 			const authError = { message: "You're not authorized" }
-			const token = req.cookies.token
+			const token = process.env.TOKEN
 			if (!token) {
 				return res.status(401).json(authError)
 			}
@@ -21,7 +21,6 @@ function authenticate() {
 				next()
 			})
 		} catch (error) {
-			console.log('INSIDE MIDDLEWARE ', error)
 			next(error)
 		}
 	}
