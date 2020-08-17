@@ -1,13 +1,12 @@
 const supertest = require('supertest')
 const server = require('../index')
 const db = require('../database/dbConfig')
-const { expectCt } = require('helmet')
 
 let token
 
-afterAll(async () => {
-	await db.destroy()
-})
+// afterAll(async () => {
+// 	await db.destroy()
+// })
 
 describe('Test Endpoints (Unauthorized)', () => {
 	it("GET '/'", async () => {

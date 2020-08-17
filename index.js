@@ -7,12 +7,12 @@ const authRouter = require('./auth/auth-router.js')
 const jokesRouter = require('./jokes/jokes-router.js')
 
 const server = express()
-const PORT = process.env.PORT || 3300
+const PORT = process.env.PORT || 4000
 
 server.use(helmet())
 server.use(cors())
-server.use(express.json())
 server.use(cookieParser())
+server.use(express.json())
 
 server.use('/api/auth', authRouter)
 server.use('/api/jokes', authenticate(), jokesRouter)

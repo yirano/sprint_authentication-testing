@@ -7,8 +7,8 @@ router.post('/register', async (req, res, next) => {
 	// implement registration
 	try {
 		const { username, password } = req.body
-		const user = Users.findUser(username).first()
-
+		const user = await Users.findUser(username).first()
+		console.log(user)
 		if (user) {
 			return res.status(409).json({ message: 'Username already exists' })
 		}
@@ -24,8 +24,8 @@ router.post('/register', async (req, res, next) => {
 	}
 })
 
-router.post('/login', (req, res) => {
-	// implement login
-})
+// router.post('/login', (req, res) => {
+// 	// implement login
+// })
 
 module.exports = router
