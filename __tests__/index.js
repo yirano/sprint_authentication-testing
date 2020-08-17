@@ -1,6 +1,7 @@
 const supertest = require('supertest')
 const server = require('../index')
 const db = require('../database/dbConfig')
+const { expectCt } = require('helmet')
 
 let token
 
@@ -9,7 +10,8 @@ afterAll(async () => {
 })
 
 describe('Test Endpoints (Unauthorized)', () => {
-	it('Test is connecetd', async () => {
-		expect(2 + 2).toBe(2)
+	it("GET '/'", async () => {
+		const res = await supertest(server).get('/api/jokes/')
+		expect(res.statusCode).toBe(401)
 	})
 })

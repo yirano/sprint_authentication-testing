@@ -6,14 +6,14 @@
 const jwt = require('jsonwebtoken')
 
 function authenticate() {
-	const authError = { message: 'Invalid Creds' }
 	return async (req, res, next) => {
 		try {
-			const token = req.header.cookie || req.cookie.token
+			const authError = { message: 'Invalid Creds' }
+			const token = req.cookies.token
 			if (!token) {
 				res.status(401).json(authError)
 			}
-			jwt.verify(token, process.env.SECRET, (err, decoded) => {
+			jwt.verify(token, process.env.SECRET, (err) => {
 				if (err) {
 					res.status(401).json(authError)
 				}
@@ -21,6 +21,7 @@ function authenticate() {
 				next()
 			})
 		} catch (error) {
+			console.log('INSIDE MIDDLEWARE ', error)
 			next(error)
 		}
 	}
