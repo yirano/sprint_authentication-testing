@@ -15,7 +15,7 @@ router.post('/register', async (req, res, next) => {
 
 		const newUser = await Users.addUser({
 			username,
-			password: bcrypt.hash(password, process.env.NODE_ENV === 'development' ? 12 : 1)
+			password: bcrypt.hash(password, process.env.NODE_ENV === 'production' ? 12 : 1)
 		})
 
 		res.status(201).json(newUser)

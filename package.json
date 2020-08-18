@@ -6,7 +6,8 @@
 	"scripts": {
 		"server": "cross-env NODE_ENV=development nodemon -r dotenv/config index.js",
 		"test": "cross-env NODE_ENV=testing jest --setupFiles dotenv/config",
-		"test:watch": "cross-env NODE_ENV=testing jest --watch --setupFiles dotenv/config"
+		"test:watch": "cross-env NODE_ENV=testing jest --watch --setupFiles dotenv/config",
+		"jest": "cross-env NODE_ENV=testing jest --watch --setupFiles dotenv/config --coverage"
 	},
 	"repository": {
 		"type": "git",
@@ -41,8 +42,6 @@
 	},
 	"jest": {
 		"testEnvironment": "node",
-		"setupFiles": [
-			"dotenv/config"
-		]
+		"setupFiles": [ "dotenv/config" ]
 	}
 }
